@@ -1,0 +1,2 @@
+# ShellBet
+Shell powered tools
