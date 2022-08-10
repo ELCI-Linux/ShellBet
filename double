@@ -18,11 +18,7 @@ elif [[ $bet_type == *"four-fold"* ]]; then
 let " winnings = odds_$bet_num * odds_$next * odds_$following * odds_$trailing * stake "
 let " ewf = ewf_$bet_num * ewf_$next * ewf_$following * ewf_trailing "
 let " ew_winnings = winnings * ewf"
-fi
-
-# Trixie
-
-if [[ $bet_type == *"trixie"* ]]; then
+elif [[ $bet_type == *"trixie"* ]]; then
 let " winnings_A = odds_$bet_num * odds_$next * stake"
 let " winnings_B = odds_$next * odds_$following * stake "
 let " winnings_C = odds_$bet_num * odds_$following * stake "
@@ -31,6 +27,133 @@ let " winnings = winnings_A + winnings_B + winnings_C + winnings_D "
 let " returns = winnings + stake "
 let " ewf = ew_$bet_num * ew_$next * ew_$following "
 let " ew_winnings = winnings * ewf "
+elif [[ $bet_type == *"patent"* ]]; then
+let " winnings_A = odds_$bet_num * stake "
+let " winnings_B = odds_$next * stake "
+let " winnings_C = odds_$next * stake "
+let " winnings_D = odds_$bet_num * odds_$next * stake"
+let " winnings_E = odds_$next * odds_$following * stake "
+let " winnings_F = odds_$bet_num * odds_$following * stake "
+let " winnings_G = odds_$bet_num * odds_$next * odds_$following * stake "
+let " winnings = winnings_A + winnings_B + winnings_C + winnings_D + winnings_E + winnings_F + winnings_G "
+let " ewf = ew_$bet_num * ew_$next * ew_$following "
+let " ew_winnings = ewf * stake * winnings "
+elif [[ $bet_type == *"yankee"* ]]; then
+# six doubles
+let " winnings_A = odds_$bet_num * odds_$next * stake "
+let " winnings_B = odds_$bet_num * odds_$following * stake "
+let " winnings_C = odds_$bet_num * odds_$trailing * stake "
+let " winnings_D = odds_$next * odds_$following * stake "
+let " winnings_E = odds_$next * odds_$trailing * stake "
+let " winnings_F = odds_$following * odds_$trailing * stake "
+#Four trebles
+let " winnings_G = odds_$bet_num * odds_$next * odds_$following * stake "
+let " winnings_H = odds_$bet_num * odds_$following * odds_$trailing * stake "
+let " winnings_I = odds_$bet_num * odds_$next * odds_$trailing * stake "
+let " winnings_J = odds_$next * odds_$following * odds_$trailing * stake "
+# Four fold acca
+let " winnings_K = odds_$bet_num * odds_$next * odds_$following * odds_$trailing * stake "
 fi
-# this line calculates E/W winnings on each pair
-let " ew_winnings = odds_$bet_num * ewf_$bet_num * odds_$next * ewf_next * stake "
+
+if [[ $bet_type == *"lucky-15"* ]]; then
+# four singles
+let " winnings_A = odds_$bet_num * stake "
+let " winnings_B = odds_$next * stake "
+let " winnings_C = odds_$following * stake "
+let " winninds_D = odds_$trailing * stake "
+#six doubles
+let " winnings_E = odds_$bet_num * odds_$next * stake "
+let " winnings_F = odds_$bet_num * odds_$following * stake "
+let " winnings_G = odds_$bet_num * odds_$trailing * stake "
+let " winnings_H = odds_$next * odds_$following * stake "
+let " winnings_I = odds_$next * odds_$trailing * stake "
+let " winnings_J = odds_$following * odds_$trailing * stake "
+#Four trebles
+let " winnings_K = odds_$bet_num * odds_$next * odds_$following * stake "
+let " winnings_L = odds_$bet_num * odds_$following * odds_$trailing * stake "
+let " winnings_M = odds_$bet_num * odds_$next * odds_$trailing * stake "
+let " winnings_N = odds_$next * odds_$following * odds_$trailing * stake "
+# Fourfold
+let " winnings_O = odds_$bet_num * odds_$next * odds_$following * odds_$trailing * stake "
+# INSERT TOTAL forumla
+# Each way fraction!
+
+let " ewf = ew_$bet_num * ew_$next * ew_$following * ew_trailing "
+fi
+done
+
+
+if [[ $bet_type == *"canadian"* ]]; then
+# ten doubles (a-j)
+# ten trebkes (k-t)
+# five fourfolds (u-y)
+# one fivefold (z)
+
+Lucky 31
+A wager consisting of five selections and 31 bets – five singles, ten doubles, ten trebles, five fourfolds, and one fivefold. Only one selection must win to guarantee you a return. For example, a £1 Lucky 31 would cost £31.
+
+Super Yankee
+Also known as a Canadian, a Super Yankee is a bet on five selections consisting of 26 bets – ten doubles, ten trebles, five fourfolds and a fivefold accumulator.
+
+Heinz
+The Heinz bet is a six-selection bet consisting of 57 bets: 15 doubles, 20 trebles, 15 fourfolds, six fivefolds and a one sixfold accumulator. Aptly named after the 57 ‘varieties’ company slogan from Heinz, this 57 bet wager is a unique bet that combines every permutation of the 6 selections into one single wager.
+
+Lucky 63
+A Lucky 63 is a bet featuring six selections and 63 bets, including: six singles, 15 doubles, 20 trebles, 15 fourfolds, six fivefolds and one sixfold.
+
+Super Heinz
+The Super Heinz is a bet on seven selections taking part in various events consisting of 21 doubles, 35 trebles, 35 fourfolds, 21 fivefolds, seven sixfolds, and a sevenfold accumulator which totals a huge 120 bets. Two selections must win to ensure any returns.
+
+Goliath
+A Goliath is a bet on eight selections taking part in various events consisting of 28 doubles, 56 trebles, 70 fourfolds, 56 fivefolds, 28 sixfolds, eight sevenfolds and an eightfold accumulator totalling 247 bets. Two selections must win to ensure any returns.
+
+Alphabet
+This is a bet on six selections composed of 26 bets: two patents (14 bets), one yankee (11 bets) and a sixfold accumulator (one bet).
+
+Single Stakes About
+A Single Stakes About is an Any To Come bet consisting of two selections from events, these are then compiled to produce two bets derived from two singles. Any return on each single (up to the original stake amount) is used to fund a further single on the other selection.
+
+Double Stakes About
+A Double Stakes About is an Any To Come bet consisting of two selections partaking in different events, which are compiled to produce two bets derived from two singles. Any return on each single, up to double the original stake amount, is used to fund a another single on the other selection.
+
+Round Robin
+The Round Robin is a three selection wager compiled of ten bets: three doubles, one treble and three up-and-down single stakes about pairs.
+
+Flag
+The ‘Flag’ wager is compiled of: six doubles, four trebles, one fourfold and six Up-And-Down SSA Pairs
+
+Super Flag
+The ‘Super Flag’ is compiled of: ten doubles, ten trebles, five fourfolds, one five-fold and ten Up-And-Down single stakes about pairs
+
+Super Heinz Flag
+The ‘Super Heinz Flag’ is compiled of: 21 doubles, 35 trebles, 35 fourfolds, 21 fivefolds, seven sixfolds, one sevenfold and 21 Up-And-Down single stakes about pairs
+
+Goliath Flag
+The ‘Goliath Flag’ is compiled of: 28 doubles, 56 trebles, 70 fourfolds, 56 fivefolds, 28 sixfolds, eight sevenfolds, one eightfold and 28 Up-And-Down single stakes about pairs
+
+Union Jack
+“The Union Jack consists of eight trebles from nine selections. Groupings are determined by laying out the selections in a 3×3 grid. This forms three horizontal trebles, three vertical trebles and two diagonal trebles.”
+
+Forecast
+A straight forecast is correctly predicting the finishing order of the horses in first and second in a race.
+
+Each-Way
+“An each-way bet is a two-part bet, with half the stake going on the selection to win and the other half on the selection to place. It costs double that of a traditional win bet and will yield some sort of return if the selection wins or is placed.
+
+For example, you place £5 each-way (£10 in total) on a horse priced at 8-1 with a bookmaker offering 1/4 odds for three places. If the horse places you will receive £15, but if the horse wins you will collect £60 (£45 for the win and £15 for the place), both returns including the original stake.”
+
+Reverse Forecast
+A reverse forecast is correctly selecting the first two horses but in no particular order.
+
+Match Bet
+Mаtched bеtting is a bеtting technique used by individuals to profit from the free bets and incentives offered by bookmakers.
+
+Placepot
+The Placepot is another favourite for racegoers. Select a horse in each of the first six races at a specific racecourse on a single day, and if that horse finishes in the placings you win a share of the total pool. One unplaced selection and the bet is off!
+
+Jackpot
+Quite possibly the hardest bet to win. Correctly predict the first six winners at a specific racecourse on a single day to win a share of the pool. One wrong selection and the bet is off!
+
+ 
+
+If you want to work out your winnings from a multiple bet such as an accumulator, we recommend you use a betting calculator to do it for you. See our list of betting calculators
