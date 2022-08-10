@@ -20,7 +20,17 @@ let " ewf = ewf_$bet_num * ewf_$next * ewf_$following * ewf_trailing "
 let " ew_winnings = winnings * ewf"
 fi
 
+# Trixie
 
-
+if [[ $bet_type == *"trixie"* ]]; then
+let " winnings_A = odds_$bet_num * odds_$next * stake"
+let " winnings_B = odds_$next * odds_$following * stake "
+let " winnings_C = odds_$bet_num * odds_$following * stake "
+let " winnings_D = winnings_A * odds_$following "
+let " winnings = winnings_A + winnings_B + winnings_C + winnings_D "
+let " returns = winnings + stake "
+let " ewf = ew_$bet_num * ew_$next * ew_$following "
+let " ew_winnings = winnings * ewf "
+fi
 # this line calculates E/W winnings on each pair
 let " ew_winnings = odds_$bet_num * ewf_$bet_num * odds_$next * ewf_next * stake "
