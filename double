@@ -1,0 +1,26 @@
+#! /bin/bash
+
+
+while [ $next -le $bet_count ]; do
+# next defines the number of the next bet
+let " next = $bet_num + 1 "
+let " following = next + 1 "
+let " trailing = following + 1 "
+let " last = trailing + 1 "
+# this line calculates winnings on each pair
+if [[ $bet_type == *"double"* ]]; then
+let " winnings = odds_$bet_num * odds_$next * stake "
+elif [[ $bet_type == *"triple"* ]]; then
+let " winnings = odds_$bet_num * odds_$next * odds_$following * stake"
+let " ewf = ewf_$bet_num * ewf_$next * $ewf_following "
+let " ew_winnings = winnings * ewf "
+elif [[ $bet_type == *"four-fold"* ]]; then
+let " winnings = odds_$bet_num * odds_$next * odds_$following * odds_$trailing * stake "
+let " ewf = ewf_$bet_num * ewf_$next * ewf_$following * ewf_trailing "
+let " ew_winnings = winnings * ewf"
+fi
+
+
+
+# this line calculates E/W winnings on each pair
+let " ew_winnings = odds_$bet_num * ewf_$bet_num * odds_$next * ewf_next * stake "
