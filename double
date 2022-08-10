@@ -1,6 +1,6 @@
 #! /bin/bash
-
-
+let " bet_num = 1 "
+let " next = $bet_num - 1"
 while [ $next -le $bet_count ]; do
 # next defines the number of the next bet
 let " next = $bet_num + 1 "
@@ -9,6 +9,12 @@ let " trailing = following + 1 "
 let " last = trailing + 1 "
 # this line calculates winnings on each pair
 if [[ $bet_type == *"double"* ]]; then
+     while [ $bet_num -le "2" ]; do
+     bet_$bet_num=$(zenity --form \
+     --title="$header" \
+     --text="Enter your bet details" \
+     --field="Stipulation"
+     
 let " winnings = odds_$bet_num * odds_$next * stake "
 elif [[ $bet_type == *"triple"* ]]; then
 let " winnings = odds_$bet_num * odds_$next * odds_$following * stake"
